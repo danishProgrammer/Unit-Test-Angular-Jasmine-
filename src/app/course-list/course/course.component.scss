@@ -1,0 +1,38 @@
+.course{
+    // width: 20vw;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(237, 167, 167);
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    .text-small{
+        color: rgb(141, 56, 13);
+        font-size: small;
+    }
+    &-actions{
+        display: none;
+        cursor: pointer;
+        button{
+            margin: 2px;
+        }
+    }
+}
+.course:hover{
+    cursor: vertical-text;
+    background-color: rgb(39, 75, 5);
+    border-color: white;
+    .course-name{
+        color: white;
+    }
+    .text-small{
+        color: white;
+    }
+
+    .course-descripton{
+        transition: all .5s;
+        left: 50px;
+    }
+    .course-actions{
+        display: block;
+    }
+}
