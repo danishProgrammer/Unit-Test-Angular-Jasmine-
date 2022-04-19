@@ -25,7 +25,6 @@ export class CourseService {
     return this.httpClient.get(this.url).pipe(
       map((res:any) => {
         const course = res.find((course:Course) => course.courseId === courseId) ?? this.courses[0];
-       console.log('entering',course);
         return course;
       })
     )
@@ -52,8 +51,6 @@ export class CourseService {
             c.totalMarks = course.totalMarks;
           }
         })
-        console.log(this.courses);
-        
       })
     )
   }
