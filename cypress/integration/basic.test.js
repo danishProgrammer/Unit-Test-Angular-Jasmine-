@@ -16,16 +16,15 @@ describe('basic comp',()=>{
         })
         
     })
-    
     it('should type and show result',()=>{
         cy.get(".search").should("have.length",1)
         cy.get(".search").type("Maths")
-        
         cy.get("app-course").should("have.length",1)
     })
     it('should open Add course',()=>{
         cy.get(".addCourse").should("have.length",1)
         cy.get(".addCourse").first().click()
+        cy.url().should('include', '/new-course') 
         cy.contains("Course Name")
         cy.contains("Passing Marks")
         cy.contains("Total Marks")
@@ -41,7 +40,25 @@ describe('basic comp',()=>{
     cy.get('.submit').click()
    })
    
-//    it('should change color on hover',()=>{
-//     cy.get('app-course').first().trigger('mouseover')
-//    })
+   it('change color on hover',()=>{
+    //cy.get('.course:hover').first().trigger('mouseup').should('have.css', 'background-color', 'rgba(39, 75, 5)');
+    // cy.wait(10000)
+    // .should('have.css', 'background-color', '-rgb(39, 75, 5)');
+    //cy.get('.course').first().trigger('mouseup').should('have.css', 'background-color', 'rgb(39, 75, 5)');
+    
+    // cy.get('.course').first().trigger('hold')
+    // cy.get('.course:hover').first()
+    // .should('have.css', 'background-color', 'rgb(39, 75, 5)');
+})
+
+
+
+it('click edit , navigate to edit ', ()=>{
+    cy.get(".edit").first().click({ force: true })
+    cy.contains("Course Name")
+        cy.contains("Passing Marks")
+        cy.contains("Total Marks")
+        cy.url().should('include', '/1/edit') 
+})
+
 })

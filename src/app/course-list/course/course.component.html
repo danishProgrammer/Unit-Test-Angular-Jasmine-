@@ -7,7 +7,7 @@
         <div class="text-small">Passing Marks: {{course.passingMarks}}</div>  
    </div>
    <div class="course-actions">
-       <button class="btn btn-warning" [routerLink]="course.courseId+'/edit'">Edit</button>
+       <button class="edit btn btn-warning" [routerLink]="course.courseId+'/edit'">Edit</button>
        <button class="btn btn-danger"(click)="deleteCourse()" >Delete</button>
    </div>
 </li>
