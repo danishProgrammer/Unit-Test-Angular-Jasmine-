@@ -1,0 +1,9 @@
+[{"courseId":"1","courseName":"Maths","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"1","courseName":"English","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"2","courseName":"History","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"3","courseName":"Hindi","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"4","courseName":"Punjabi","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"5","courseName":"Physical Education","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"6","courseName":"Computer Science","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"7","courseName":"Civics","totalMarks":"100","passingMarks":"50"},
+  {"courseId":"8","courseName":"Botany","totalMarks":"100","passingMarks":"50"}]
