@@ -1,7 +1,7 @@
 <form (submit)="editCourse()" [formGroup]="courseForm">
     <div class="form-group" *ngIf="!newCourse">
         <label for="courseId">Course ID</label>
-        <input type="text" name="courseId" id="courseId" class="form-control" [value]="course?.courseId" disabled />
+        <input type="text" name="courseId" class="courseId form-control" [value]="course?.courseId" disabled />
       </div>
   <div class="form-group">
     <label for="courseName">Course Name</label>
@@ -16,7 +16,7 @@
     <input type="text" name="totalMarks" id="totalMarks" class="form-control" formControlName="totalMarks" />
   </div>
 
-  <button type="submit" class="btn btn-success"> {{ newCourse ? 'Add Course' : 'Edit Course'}}</button>
+  <button type="submit" class="submit btn btn-success"> {{ newCourse ? 'Add Course' : 'Edit Course'}}</button>
 
   <button class="btn btn-primary" (click)="cancelForm()">Cancel</button>
 
