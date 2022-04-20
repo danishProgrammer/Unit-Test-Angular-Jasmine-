@@ -20,20 +20,25 @@ describe("basic comp", () => {
   });
 
   it("should type and show result", () => {
-    const searchKey = "Maths";
+    const searchKey = "m";
     cy.get(".search").should("have.length", 1);
     cy.get(".search").type(searchKey);
     cy.get("@course").then((res) => {
       const courses = res.response.body;
       const filteredCourses = courses.filter((course) =>
-        course.courseName.includes(searchKey)
+        course.courseName.toLowerCase().includes(searchKey.toLowerCase())
       );
       cy.get("app-course").should("have.length", filteredCourses.length);
     });
   });
 
   it("should click edit , navigate to edit and add data and save", () => {
-    cy.get(".edit").first().click({ force: true });
+    cy.get('.course').first()
+      .trigger("mouseover")
+      .find(".course-actions")
+      .invoke("show")
+      .contains("Edit")
+      .click();
     cy.contains("Course Name");
     cy.contains("Passing Marks");
     cy.contains("Total Marks");
@@ -66,6 +71,19 @@ describe("basic comp", () => {
     cy.contains("Total Marks");
   });
 
+  it("should match 2nd record",() => {
+    cy.visit('/');
+    cy.get("@course").then((res) => {
+        console.log("checking response",res.response.body);
+        const idx = 1;
+        const course = res.response.body[idx];
+        cy.get('.course').eq(idx).as('singleCourse');
+        cy.get('@singleCourse').find('.course-name').contains(course.courseName);
+        cy.get('@singleCourse').find('#totalMarks').contains(course.totalMarks);
+        cy.get('@singleCourse').find('#passingMarks').contains(course.passingMarks);
+    })
+  })
+
   it("should contain edit and delete button on hover", () => {
     cy.get(".course").eq(2).as("thirdEl");
     cy.get("@thirdEl")
@@ -84,21 +102,22 @@ describe("basic comp", () => {
       .click();
   });
 
-<<<<<<< HEAD
-    it('should open Add course',()=>{
-        cy.get(".addCourse").should("have.length",1)
-        cy.get(".addCourse").first().click()
-        cy.url().should('include', '/new-course') 
-        cy.contains("Course Name")
-        cy.contains("Passing Marks")
-        cy.contains("Total Marks")
-   })
-   it('should match page heading',()=>{
-    cy.get(".pageHeading").should('have.text',"Welcome to Angular Unit Testing Practice Course")
+  it("should open Add course", () => {
+    cy.get(".addCourse").should("have.length", 1);
+    cy.get(".addCourse").first().click();
+    cy.url().should("include", "/new-course");
+    cy.contains("Course Name");
+    cy.contains("Passing Marks");
+    cy.contains("Total Marks");
+  });
 
-})
-})
-=======
+  it("should match page heading", () => {
+    cy.get(".pageHeading").should(
+      "have.text",
+      "Welcome to Angular Unit Testing Practice Course"
+    );
+  });
+
   it("should open confirm dialog when delete clicked", () => {
     cy.get(".course").eq(1).as("secondEle");
     cy.wait(2000);
@@ -113,4 +132,3 @@ describe("basic comp", () => {
     });
   });
 });
->>>>>>> 9a1e0c656bcd8cd46926997b6adbc63ac525fd77

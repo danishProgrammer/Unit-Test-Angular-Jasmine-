@@ -3,8 +3,8 @@
        {{course.courseName}}
     </div>
    <div class="course-description">
-        <div class="text-small">Total Marks: {{course.totalMarks}}</div>
-        <div class="text-small">Passing Marks: {{course.passingMarks}}</div>  
+        <div class="text-small" id="totalMarks">Total Marks: {{course.totalMarks}}</div>
+        <div class="text-small" id="passingMarks">Passing Marks: {{course.passingMarks}}</div>  
    </div>
    <div class="course-actions">
        <button class="edit btn btn-warning" [routerLink]="course.courseId+'/edit'">Edit</button>
