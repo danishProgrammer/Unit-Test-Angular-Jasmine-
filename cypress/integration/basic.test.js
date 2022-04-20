@@ -53,12 +53,16 @@ describe('basic comp',()=>{
 
 
 
-it('click edit , navigate to edit ', ()=>{
+it('should click edit , navigate to edit and add data and save', ()=>{
     cy.get(".edit").first().click({ force: true })
     cy.contains("Course Name")
-        cy.contains("Passing Marks")
-        cy.contains("Total Marks")
-        cy.url().should('include', '/1/edit') 
+    cy.contains("Passing Marks")
+    cy.contains("Total Marks")
+    cy.url().should('include', '/1/edit') 
+    cy.get("#courseName").clear().type("Maths")
+    cy.get("#passingMarks").clear().type("40")
+    cy.get("#totalMarks").clear().type("100")
+    cy.get('.submit').click()
 })
 
 })
