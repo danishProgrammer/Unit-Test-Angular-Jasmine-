@@ -73,4 +73,8 @@ describe('basic comp',()=>{
         cy.contains("Passing Marks")
         cy.contains("Total Marks")
    })
+   it('should match page heading',()=>{
+    cy.get(".pageHeading").should('have.text',"Welcome to Angular Unit Testing Practice Course")
+
+})
 })
