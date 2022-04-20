@@ -1,4 +1,4 @@
-<form (submit)="editCourse()" [formGroup]="courseForm">
+<form (submit)="submitCourse()" [formGroup]="courseForm">
     <div class="form-group" *ngIf="!newCourse">
         <label for="courseId">Course ID</label>
         <input type="text" name="courseId" class="courseId form-control" [value]="course?.courseId" disabled />

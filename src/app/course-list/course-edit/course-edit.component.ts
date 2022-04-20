@@ -10,6 +10,7 @@ import { Course } from 'src/app/utils/course.utils';
   styleUrls: ['./course-edit.component.scss']
 })
 export class CourseEditComponent implements OnInit {
+  courseList:any;
 
   constructor(private activatedRoute:ActivatedRoute,private courseService:CourseService,private router:Router) { }
   public newCourse:boolean = false;
@@ -23,10 +24,40 @@ export class CourseEditComponent implements OnInit {
     }
     this.configureForm()
   }
+  public submitCourse():void{
+    if(!this.newCourse){
+      this.editCourse();
+    }
+    else{
+      this.addCourse();
+    }
+  }
+  public addCourse():void{
+    
 
+    this.courseService.getCourseList().subscribe(courses => {
+      const len = courses.length;
+      const course:Course = {
+        courseId: ""+(len+1),
+        courseName:this.courseForm.get('courseName')?.value,
+        passingMarks:this.courseForm.get('passingMarks')?.value,
+        totalMarks:this.courseForm.get('totalMarks')?.value
+      }
+      console.log(course);
+      
+      this.courseService.addCourse(course).subscribe(() => {
+        alert('course Added successfully')
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        },1000)
+      })
+    })
+    
+    
+  }
   public editCourse(): void {
     const course:Course = {
-      courseId:this.course.courseId,
+      courseId: this.course.courseId ,
       courseName:this.courseForm.get('courseName')?.value,
       passingMarks:this.courseForm.get('passingMarks')?.value,
       totalMarks:this.courseForm.get('totalMarks')?.value

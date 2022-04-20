@@ -15,20 +15,13 @@ describe('basic comp',()=>{
             const courses  = res.response.body;
             cy.get("app-course").should("have.length",courses.length);
            
-            console.log(courses.filter(course => course.courseName.includes('Maths')));
+            // console.log(courses.filter(course => course.courseName.includes('Maths')));
         })
         
     })
-    it('should open Add course',()=>{
-         cy.get(".addCourse").should("have.length",1)
-         cy.get(".addCourse").first().click()
-         cy.contains("Course Name")
-        //   cy.get(".form-group #courseId").type("11")
-        //  cy.get(".courseName").type("EVS")
-        //  cy.get(".courseMarks").type("60")
-        //  cy.get(".courseTotalMarks").type("100")
-        // cy.get(".task").should("contain","This is task page.")
-    })
+
+
+
     it('should type and show result',()=>{
         cy.get(".search").should("have.length",1);
         cy.get(".search").type("Maths");
@@ -36,7 +29,7 @@ describe('basic comp',()=>{
         const courses  = res.response.body;
         cy.get("app-course").should("have.length",courses.filter(course => course.courseName.includes('Maths')).length);
     });
-});
+})
 
     it('should contain edit and delete button on hover', ()=>{
         cy.get('.course').eq(3).as('thirdEl');
@@ -46,4 +39,38 @@ describe('basic comp',()=>{
         cy.wait(3000);
         // cy.get('@thirdEl').realHover().find('.course-actions:visible .btn').contains('Edit').click();
     });
+
+    it('should click edit , navigate to edit and add data and save', ()=>{
+        cy.get(".edit").first().click({ force: true })
+        cy.contains("Course Name")
+        cy.contains("Passing Marks")
+        cy.contains("Total Marks")
+        cy.url().should('include', '/1/edit') 
+        cy.get("#courseName").clear().type("Maths")
+        cy.get("#passingMarks").clear().type("40")
+        cy.get("#totalMarks").clear().type("100")
+        cy.get('.submit').click()
+    })
+
+    it('should Add course',()=>{
+        cy.visit("/new-course");
+        cy.contains("Course Name")
+        cy.contains("Passing Marks")
+        cy.get("#courseName").type("EVS")
+        cy.get("#passingMarks").type("60")
+        cy.get("#totalMarks").type("100")
+        cy.get('.submit').click()
+        cy.on('window:alert', (str) => {
+            expect(str).to.equal("course Added successfully")
+          })
+       })
+
+    it('should open Add course',()=>{
+        cy.get(".addCourse").should("have.length",1)
+        cy.get(".addCourse").first().click()
+        cy.url().should('include', '/new-course') 
+        cy.contains("Course Name")
+        cy.contains("Passing Marks")
+        cy.contains("Total Marks")
+   })
 })

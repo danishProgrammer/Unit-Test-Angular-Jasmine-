@@ -8,6 +8,7 @@ import { Course } from '../utils/course.utils';
   providedIn: 'root'
 })
 export class CourseService {
+  
   private url = '../.././assets/courses.json';
   private courses:Course[] = [];
   constructor(private httpClient:HttpClient) { }
@@ -38,7 +39,14 @@ export class CourseService {
       })
     )
   }
-
+  addCourse(course: Course) {
+    return this.httpClient.get(this.url).pipe(
+      map(() => {
+        return this.courses.push(course)
+      })
+    )
+    
+  }
   editCourse(course:Course):Observable<void>{
     return this.httpClient.get(this.url).pipe(
       map(() => {
