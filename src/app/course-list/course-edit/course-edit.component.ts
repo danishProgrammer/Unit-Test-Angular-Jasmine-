@@ -38,7 +38,7 @@ export class CourseEditComponent implements OnInit {
     this.courseService.getCourseList().subscribe(courses => {
       const len = courses.length;
       const course:Course = {
-        courseId: ""+(len+1),
+        courseId: ""+len,
         courseName:this.courseForm.get('courseName')?.value,
         passingMarks:this.courseForm.get('passingMarks')?.value,
         totalMarks:this.courseForm.get('totalMarks')?.value

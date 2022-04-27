@@ -20,7 +20,7 @@ describe("basic comp", () => {
   });
 
   it("should type and show result", () => {
-    const searchKey = "m";
+    const searchKey = "math";
     cy.get(".search").should("have.length", 1);
     cy.get(".search").type(searchKey);
     cy.get("@course").then((res) => {
@@ -72,7 +72,7 @@ describe("basic comp", () => {
   });
 
   it("should match 2nd record",() => {
-    cy.visit('/');
+    cy.wait(2000);
     cy.get("@course").then((res) => {
         console.log("checking response",res.response.body);
         const idx = 1;
@@ -120,7 +120,6 @@ describe("basic comp", () => {
 
   it("should open confirm dialog when delete clicked", () => {
     cy.get(".course").eq(1).as("secondEle");
-    cy.wait(2000);
     cy.get("@secondEle")
       .trigger("mouseover")
       .find(".course-actions")
@@ -131,4 +130,25 @@ describe("basic comp", () => {
       expect(str).to.equal("Are you sure you want to delete this course");
     });
   });
+
+  // How to open a new link from cypress;
+  //  it('should open a new link on button click',() => {
+  //      cy.get('#activeButton').invoke('removeAttr','target').click();
+  //  })
+
+  // How to move back to particular URL. 
+  // it('should move back',() => {
+  //   cy.go('back')
+  // })
+   
+  // How to move forward to particular URL. 
+  // it('should move forward',() => {
+  //   cy.go('forward')
+  // })
+
+  // How to check URL 
+    it('should include localhost in the URL',() => {
+      
+      cy.url().should('include','localhost') // second argument is URL path. 
+    })
 });

@@ -24,8 +24,8 @@ export class CourseService {
 
   getCourseDetail(courseId:string):Observable<Course> {
     return this.httpClient.get(this.url).pipe(
-      map((res:any) => {
-        const course = res.find((course:Course) => course.courseId === courseId) ?? this.courses[0];
+      map(() => {
+        const course = this.courses.find((course:Course) => course.courseId === courseId) ?? this.courses[0];
         return course;
       })
     )
