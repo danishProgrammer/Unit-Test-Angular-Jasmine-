@@ -1,0 +1,26 @@
+<div class="course-wrapper">
+  <div class="row">
+    <div class="col-lg-10">
+      <h5>Courses List</h5>
+    </div>
+    <div class="col-lg-2">
+      <input
+        type="text"
+        placeholder="Search.."
+        id="search"
+        name="search"
+        (input)="searchCourse($event)"
+        class="form-control search"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <ul class="courses">
+      <app-course
+        *ngFor="let course of courseList"
+        [course]="course"
+        (delete)="deleteCourse(course.courseId)"
+      ></app-course>
+    </ul>
+  </div>
+</div>

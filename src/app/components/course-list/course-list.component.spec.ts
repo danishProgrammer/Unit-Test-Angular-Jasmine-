@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CourseService } from '../services/course.service';
+import { CourseService } from '../../services/course.service';
 
 import { CourseListComponent } from './course-list.component';
 
